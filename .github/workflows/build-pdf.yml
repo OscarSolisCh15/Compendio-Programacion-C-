@@ -1,8 +1,9 @@
-name: Build LaTeX PDF
-on:
-  push:
-    branches: [ main ]
-  workflow_dispatch:
+name: Compile LaTeX
+ uses: xu-cheng/latex-action@v4
+ with:
+   root_file: main.tex
+   working_directory: tex
+
 
 jobs:
   build:
@@ -14,7 +15,7 @@ jobs:
       - name: Compile LaTeX
         uses: xu-cheng/latex-action@v4
         with:
-          root_file: main.tex
+          root_file: Compendio_Programacion_C.tex
 
       - name: Upload PDF
         uses: actions/upload-artifact@v4
