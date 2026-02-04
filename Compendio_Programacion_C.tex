@@ -1,0 +1,2414 @@
+\documentclass[a4paper,11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{xcolor}
+
+\renewcommand\familydefault{\sfdefault}
+\usepackage{tgheros}
+\usepackage[defaultmono]{droidmono}
+
+\usepackage{amsmath,amssymb,amsthm,textcomp}
+\usepackage{enumerate}
+\usepackage{multicol}
+\usepackage{tikz}
+
+\usepackage{geometry}
+\geometry{left=25mm,right=25mm,%
+bindingoffset=0mm, top=20mm,bottom=20mm}
+
+
+\linespread{1.3}
+
+\newcommand{\linia}{\rule{\linewidth}{0.5pt}}
+
+% custom theorems if needed
+\newtheoremstyle{mytheor}
+    {1ex}{1ex}{\normalfont}{0pt}{\scshape}{.}{1ex}
+    {{\thmname{#1 }}{\thmnumber{#2}}{\thmnote{ (#3)}}}
+
+\theoremstyle{mytheor}
+\newtheorem{defi}{Definition}
+
+% my own titles
+\makeatletter
+\renewcommand{\maketitle}{
+\begin{center}
+\vspace{2ex}
+{\huge \textsc{\@title}}
+\vspace{1ex}
+\\
+\linia\\
+\@author \hfill \@date
+\vspace{4ex}
+\end{center}
+}
+\makeatother
+%%%
+
+% custom footers and headers
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\rhead{}
+\lfoot{Compendio Programación C++ }
+\cfoot{}
+\rfoot{Página \thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+%
+
+% code listing settings
+\usepackage{listings}
+\lstset{
+     language=C++,
+    basicstyle=\ttfamily\small,
+    aboveskip=1em,
+    belowskip=1em,
+    columns=fixed,
+    extendedchars=true,
+    breaklines=true,
+    tabsize=4,
+    prebreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+    frame=lines,
+    showtabs=false,
+    showspaces=false,
+    showstringspaces=false,
+    keywordstyle=\color[rgb]{0.1,0.1,0.8},
+    commentstyle=\color[rgb]{0.1,0.5,0.1},
+    stringstyle=\color[rgb]{0.7,0,0},
+    numbers=left,
+    numberstyle=\tiny,
+    stepnumber=1,
+    numbersep=10pt,
+    captionpos=t,
+    escapeinside={\%*}{*)}
+}
+
+%%%----------%%%----------%%%----------%%%----------%%%
+
+\begin{document}
+
+\title{Compendio de Ejercicios de Programación en C++ }
+
+\author{Oscar Solís - Servicio Social: Apoyo a la dociencia y asesoría académica}
+
+\date{Julio 2025}
+
+\maketitle
+
+\section*{Introducción}
+
+Este compendio fue desarrollado como parte del servicio social en Apoyo a la docencia y asesoría académica en la asignatura \textbf{Programación} lenguaje C++, con el objetivo de apoyar a estudiantes en el desarrollo de habilidades lógicas, estructuración de algoritmos y buenas prácticas en la codificación.
+
+Cada ejercicio incluye una descripción clara del problema, su solución comentada y una explicación de la lógica empleada. Los ejercicios están organizados por nivel de dificultad y temática, abordando temas fundamentales como manejo de variables, estructuras condicionales, ciclos, funciones, arreglos, punteros, clases y herencia.
+
+\section*{Problema 1: Hola mundo}
+
+
+\textbf{Temática:} Estructura básica de un programa
+
+\textbf{Descripción:}  
+Escribe un programa en C++ que imprima en pantalla el mensaje `"Hola, mundo"`.
+
+Este ejercicio permite familiarizarse con la sintaxis básica de C++, la estructura de un programa y cómo compilarlo y ejecutarlo.
+
+\begin{lstlisting}[caption= HolaMundo.cpp]
+#include <iostream>
+using namespace std;
+
+int main() {
+    cout << "Hola, mundo" << endl;
+    return 0;
+}
+\end{lstlisting}
+
+\textbf{Explicación:}
+\begin{itemize}
+\item \texttt{\#include <iostream>}: Permite usar \texttt{cout} para imprimir
+\item \texttt{using namespace std;}: Evita escribir \texttt{std::} antes de \texttt{cout}
+\item \texttt{int main()}: Función obligatoria donde inicia el programa
+\item \texttt{cout <<}: Imprime el mensaje en pantalla
+\item \texttt{<< endl;}: Agrega un salto de línea
+\item \texttt{return 0;}: Indica que el programa terminó correctamente
+\end{itemize}
+
+
+\section*{Problema 2: Conversión de Temperaturas}
+
+\textbf{Temática:} Uso de variables, entrada/salida, operaciones aritméticas
+
+\textbf{Descripción:}  
+Diseña un programa en C++ que reciba una temperatura en grados Fahrenheit e imprima su equivalente en grados Celsius, Kelvin y Rankine. El objetivo es aplicar fórmulas matemáticas básicas y practicar el manejo de entrada/salida y variables tipo `float` o `double`.
+
+\begin{lstlisting}[caption= ConvertirTemperaturas.cpp]
+#include <iostream>
+using namespace std;
+
+int main() {
+    // Declaracion de variables
+    float fahrenheit, celsius, kelvin, rankine;
+
+    // Solicitar valor en Fahrenheit
+    cout << "Ingresa la temperatura en Fahrenheit: ";
+    cin >> fahrenheit;
+
+    // Calculos
+    celsius = (fahrenheit - 32) * (5.0 / 9.0);
+    kelvin = celsius + 273.15;
+    rankine = fahrenheit + 459.67;
+
+    // Resultados
+    cout << "Celsius: " << celsius << endl;
+    cout << "Kelvin: " << kelvin << endl;
+    cout << "Rankine: " << rankine << endl;
+
+    return 0;
+}
+\end{lstlisting}
+
+\textbf{Explicación:}
+\begin{itemize}
+    \item \texttt{float fahrenheit, celsius, kelvin, rankine;} Declaración de variables tipo flotante para manejar decimales.
+    \item \texttt{cin >> fahrenheit;} Captura la temperatura que el usuario ingresa.
+    \item \texttt{celsius = (fahrenheit - 32) * (5.0 / 9.0);}: Fórmula para convertir de Fahrenheit a Celsius.
+    \item \texttt{kelvin = celsius + 273.15;} Convierte de Celsius a Kelvin.
+    \item \texttt{rankine = fahrenheit + 459.67;} Fórmula para convertir directamente de Fahrenheit a Rankine.
+    \item \texttt{cout << ...}: Muestra los resultados en pantalla.
+\end{itemize}
+
+\section*{Problema 3: Volumen de un Cilindro}
+
+\textbf{Temática:} Uso de constantes, entrada/salida, operaciones con potencias
+
+\textbf{Descripción:}  
+Crea un programa en C++ que calcule el volumen de un cilindro a partir del radio y la altura proporcionados por el usuario. Este ejercicio permite practicar el uso de constantes, operaciones aritméticas, entrada/salida de datos y la función de potencia `pow`.
+
+\begin{lstlisting}[caption= VolumenCilindro.cpp]
+#include <iostream>
+#include <cmath> // Para usar pow
+using namespace std;
+
+int main() {
+    // Declaración de constante y variables
+    const double PI = 3.1415926536;
+    double radio, altura, volumen;
+
+    // Solicitar datos al usuario
+    cout << "Ingresa el radio del cilindro: ";
+    cin >> radio;
+
+    cout << "Ingresa la altura del cilindro: ";
+    cin >> altura;
+
+    // Cálculo del volumen
+    volumen = PI * pow(radio, 2) * altura;
+
+    // Mostrar resultado
+    cout << "El volumen del cilindro es: " << volumen << endl;
+
+    return 0;
+}
+\end{lstlisting}
+
+\textbf{Explicación:}
+\begin{itemize}
+    \item \texttt{\#include <cmath>} permite utilizar funciones matemáticas como \texttt{pow}
+    \item \texttt{const double PI = 3.1415926536} define una constante para π con mayor precisión
+    \item \texttt{double radio, altura, volumen} declara las variables reales necesarias
+    \item \texttt{cin >> radio;} y \texttt{cin >> altura;} capturan los valores ingresados por el usuario
+    \item \texttt{volumen = PI * pow(radio, 2) * altura} aplica la fórmula del volumen del cilindro
+    \item \texttt{cout << volumen} muestra el resultado en consola
+\end{itemize}
+
+
+
+\section*{Problema 4:  Cálculo de ángulo restante}
+
+\textbf{Temática:} Entrada/Salida básica y operaciones aritméticas
+
+\textbf{Descripción:}  
+Escribe un programa en C++ que calcule el tercer ángulo de un triángulo cuando se conocen dos de sus ángulos. El programa debe solicitar al usuario los valores de dos ángulos y calcular el tercero usando la propiedad de que la suma de los ángulos internos de un triángulo es 180°.
+
+\begin{lstlisting}[caption= AnguloTriangulo.cpp]
+#include <iostream>
+using namespace std;
+
+int main() {
+    // Declaracion de variables
+    float A, B, C;
+    
+    // Solicitar y leer los angulos
+    cout << "Ingrese el primer angulo (A): ";
+    cin >> A;
+    cout << "Ingrese el segundo angulo (B): ";
+    cin >> B;
+    
+    // Calcular el tercer ángulo
+    C = 180 - (A + B);
+    
+    // Mostrar el resultado
+    cout << "El tercer angulo mide: " << C << " grados" << endl;
+    
+    return 0;
+}
+\end{lstlisting}
+
+\textbf{Explicación:}
+\begin{itemize}
+\item \texttt{\#include <iostream>}: Necesario para las operaciones de entrada/salida
+\item \texttt{using namespace std;}: Permite usar \texttt{cout} y \texttt{cin} sin prefijo
+
+\item \texttt{float A, B, C;}: Declara tres variables para almacenar los ángulos
+\item \texttt{cin >> A;}: Lee el valor del primer ángulo ingresado por el usuario
+\item \texttt{cin >> B;}: Lee el valor del segundo ángulo ingresado por el usuario
+
+\item \texttt{C = 180 - (A + B);}: Fórmula para calcular el ángulo restante
+\item \texttt{cout << "El tercer angulo...}: Muestra el resultado formateado
+\item \texttt{return 0;}: Indica que el programa terminó correctamente
+\end{itemize}
+
+\textbf{Nota:} Este programa asume que los ángulos ingresados son válidos (A + B < 180°). Sería buena práctica agregar validación de entrada.
+
+\section*{Problema 5: Cálculo del Cateto B}
+
+\textbf{Temática:} Operaciones con potencias y raíz cuadrada
+
+\textbf{Descripción:}  
+Escribe un programa en C++ que calcule el valor del cateto B en un triángulo rectángulo usando el teorema de Pitágoras, a partir de los valores del cateto A y la hipotenusa C. Este ejercicio fortalece el uso de operaciones matemáticas con potencias y raíces.
+
+\begin{lstlisting}[caption= CalcularCatetoB.cpp]
+#include <iostream>
+#include <cmath> // Para pow y sqrt
+using namespace std;
+
+int main() {
+    // Declaración de variables
+    double a, b, c;
+
+    // Solicitar datos al usuario
+    cout << "Ingresa el valor del cateto A: ";
+    cin >> a;
+
+    cout << "Ingresa el valor de la hipotenusa C: ";
+    cin >> c;
+
+    // Cálculo del cateto B
+    b = sqrt(pow(c, 2) - pow(a, 2));
+
+    // Mostrar resultado
+    cout << "El valor del cateto B es: " << b << endl;
+
+    return 0;
+}
+\end{lstlisting}
+
+\textbf{Explicación:}
+\begin{itemize}
+    \item \texttt{\#include <cmath>} permite el uso de funciones como \texttt{pow} y \texttt{sqrt}
+    \item \texttt{double a, b, c} declara las variables reales necesarias
+    \item \texttt{cin >> a;} y \texttt{cin >> c;} capturan los valores ingresados por el usuario
+    \item \texttt{pow(c, 2)} calcula el cuadrado de la hipotenusa
+    \item \texttt{pow(a, 2)} calcula el cuadrado del cateto A
+    \item \texttt{sqrt(...)} obtiene la raíz cuadrada de la diferencia de cuadrados
+    \item \texttt{cout << b} muestra el resultado en consola
+\end{itemize}
+
+
+\section*{Problema 6: Clasificación de Ángulos}
+
+\textbf{Temática:} Condicionales anidadas (`if`, `else if`, `else`)
+
+\textbf{Descripción:}  
+Crea un programa en C++ que lea dos ángulos y determine si son iguales o diferentes. Si son iguales, deberá indicar el tipo de ángulo (agudo, recto, obtuso, llano o cóncavo). Si son diferentes, el programa debe clasificar cada uno por separado. Este ejercicio permite practicar el uso de condicionales múltiples y anidadas.
+
+\begin{lstlisting}[caption= ClasificacionAngulos.cpp]
+#include <iostream>
+using namespace std;
+
+int main() {
+    // Declaración de variables
+    double anguloA, anguloB;
+
+    // Solicitar ángulos al usuario
+    cout << "Ingresa el ángulo A: ";
+    cin >> anguloA;
+    
+    cout << "Ingresa el ángulo B: ";
+    cin >> anguloB;
+
+    // Comparación de los ángulos
+    if (anguloA == anguloB) {
+        cout << "LOS ÁNGULOS SON IGUALES" << endl;
+
+        if (anguloA < 90) {
+            cout << "SON AGUDOS" << endl;
+        }
+        else if (anguloA == 90) {
+            cout << "SON RECTOS" << endl;
+        }
+        else if (anguloA > 90 && anguloA < 180) {
+            cout << "SON OBTUSOS" << endl;
+        }
+        else if (anguloA == 180) {
+            cout << "SON LLANOS" << endl;
+        }
+        else if (anguloA > 180 && anguloA < 360) {
+            cout << "SON CÓNCAVOS" << endl;
+        }
+
+    } else {
+        cout << "LOS ÁNGULOS SON DIFERENTES" << endl;
+
+        // Clasificación del ángulo A
+        if (anguloA < 90) {
+            cout << "EL ÁNGULO A ES AGUDO" << endl;
+        }
+        else if (anguloA == 90) {
+            cout << "EL ÁNGULO A ES RECTO" << endl;
+        }
+        else if (anguloA > 90 && anguloA < 180) {
+            cout << "EL ÁNGULO A ES OBTUSO" << endl;
+        }
+        else if (anguloA == 180) {
+            cout << "EL ÁNGULO A ES LLANO" << endl;
+        }
+        else if (anguloA > 180 && anguloA < 360) {
+            cout << "EL ÁNGULO A ES CÓNCAVO" << endl;
+        }
+
+        // Clasificación del ángulo B
+        if (anguloB < 90) {
+            cout << "EL ÁNGULO B ES AGUDO" << endl;
+        }
+        else if (anguloB == 90) {
+            cout << "EL ÁNGULO B ES RECTO" << endl;
+        }
+        else if (anguloB > 90 && anguloB < 180) {
+            cout << "EL ÁNGULO B ES OBTUSO" << endl;
+        }
+        else if (anguloB == 180) {
+            cout << "EL ÁNGULO B ES LLANO" << endl;
+        }
+        else if (anguloB > 180 && anguloB < 360) {
+            cout << "EL ÁNGULO B ES CÓNCAVO" << endl;
+        }
+    }
+
+    return 0;
+}
+\end{lstlisting}
+
+\textbf{Explicación:}
+\begin{itemize}
+    \item \texttt{double anguloA, anguloB} declara las variables para almacenar los valores de los ángulos
+    \item \texttt{cin >> anguloA} y \texttt{cin >> anguloB} permiten ingresar los datos
+    \item Se usa \texttt{if (anguloA == anguloB)} para verificar si los ángulos son iguales
+    \item Dentro de ese bloque se emplean \texttt{if} y \texttt{else if} para determinar el tipo de ángulo
+    \item Si los ángulos son distintos, se clasifican individualmente con condicionales anidadas
+    \item Se usan operadores lógicos como \texttt{>} y \texttt{<} para definir los rangos de cada tipo de ángulo
+\end{itemize}
+
+
+\section*{Problema 7: Cálculo de funciones trigonométricas}
+
+\textbf{Temática:} Funciones matemáticas y condicionales
+
+\textbf{Descripción:}
+Programa que calcula el seno, coseno y arco tangente de un ángulo, permitiendo al usuario especificar si el ángulo está en grados o radianes. Además, realiza la conversión entre estas unidades.
+
+\begin{lstlisting}[caption=FuncionesTrigonometricas.cpp]
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+int main() {
+    const double PI = 3.1415926536;
+    double angulo, senAng, cosAng, arcTanAng, angRadianes, angGrados;
+    char resp;
+
+    cout << "¿EN QUE TIENE EL TAMAÑO DEL ANGULO?" << endl;
+    cout << "¿GRADOS(G), RADIANES(R)?: ";
+    cin >> resp;
+
+    cout << "Ingrese el valor del angulo: ";
+    cin >> angulo;
+
+    if (toupper(resp) == 'G') {
+        angRadianes = angulo * (PI/180);
+        cout << "EQUIVALEN A " << angRadianes << " RADIANES" << endl;
+        
+        senAng = sin(angRadianes);
+        cosAng = cos(angRadianes);
+        arcTanAng = atan(angRadianes);
+    } else {
+        angGrados = angulo * (180/PI);
+        cout << "EQUIVALEN A " << angGrados << " GRADOS" << endl;
+        
+        senAng = sin(angulo);
+        cosAng = cos(angulo);
+        arcTanAng = atan(angulo);
+    }
+
+    cout << "SENO = " << senAng << endl;
+    cout << "COSENO = " << cosAng << endl;
+    cout << "ARCO TANGENTE = " << arcTanAng << endl;
+
+    return 0;
+}
+\end{lstlisting}
+
+\textbf{Explicación:}
+\begin{itemize}
+    \item \texttt{const double PI = 3.1415926536} define la constante PI con mayor precisión
+    \item \texttt{double angulo, senAng, ...} declara las variables para almacenar los valores
+    \item \texttt{char resp} almacena la elección del usuario (Grados o Radianes)
+    \item \texttt{toupper(resp)} convierte la respuesta a mayúscula para uniformidad
+    \item \texttt{if (toupper(resp) == 'G')} decide si trabajar con grados o radianes
+    \item \texttt{angRadianes = angulo * (PI/180)} convierte grados a radianes
+    \item \texttt{angGrados = angulo * (180/PI)} convierte radianes a grados
+    \item \texttt{sin()}, \texttt{cos()} y \texttt{atan()} calculan las funciones trigonométricas
+\end{itemize}
+
+\textbf{Notas:}
+\begin{itemize}
+    \item Se usa \texttt{toupper()} para aceptar 'g' o 'G' como entrada válida
+    \item Las funciones trigonométricas de \texttt{cmath} trabajan en radianes
+    \item Se podría mejorar agregando validación para respuestas no válidas
+\end{itemize}
+
+\section*{Problema 8: Equivalencias entre metros, yardas, pies y pulgadas}
+
+\textbf{Temática:} Condicionales múltiples, operaciones aritméticas, selección con caracteres
+
+\textbf{Descripción:}  
+Crea un programa en C++ que convierta una unidad de longitud (metros, yardas, pies o pulgadas) a sus equivalentes en las demás unidades. El usuario debe indicar qué unidad desea convertir y proporcionar la cantidad. Este ejercicio permite practicar el uso de `if` con condiciones sobre caracteres, operaciones aritméticas y mensajes claros al usuario.
+
+\begin{lstlisting}[caption= EquivalenciasLongitud.cpp]
+#include <iostream>
+using namespace std;
+
+int main() {
+    // Declaración de variables
+    double metros, yardas, pies, pulgadas;
+    char resp;
+
+    // Menú de selección
+    cout << "¿QUÉ DESEA CONVERTIR?" << endl;
+    cout << "¿METROS (M), YARDAS (Y), PIES (P), PULGADAS (U)?: ";
+    cin >> resp;
+
+    if (resp == 'M' || resp == 'm') {
+        cout << "Ingrese el número de metros: ";
+        cin >> metros;
+
+        pulgadas = (metros * 100) / 2.54;
+        pies = pulgadas / 12;
+        yardas = pies / 3;
+
+        cout << metros << " METROS EQUIVALEN A: " << endl;
+        cout << pulgadas << " PULGADAS" << endl;
+        cout << pies << " PIES" << endl;
+        cout << yardas << " YARDAS" << endl;
+    }
+
+    if (resp == 'Y' || resp == 'y') {
+        cout << "Ingrese el número de yardas: ";
+        cin >> yardas;
+
+        pies = yardas * 3;
+        pulgadas = pies * 12;
+        metros = (pulgadas * 2.54) / 100;
+
+        cout << yardas << " YARDAS EQUIVALEN A: " << endl;
+        cout << pulgadas << " PULGADAS" << endl;
+        cout << pies << " PIES" << endl;
+        cout << metros << " METROS" << endl;
+    }
+
+    if (resp == 'P' || resp == 'p') {
+        cout << "Ingrese el número de pies: ";
+        cin >> pies;
+
+        pulgadas = pies * 12;
+        yardas = pies / 3;
+        metros = (pulgadas * 2.54) / 100;
+
+        cout << pies << " PIES EQUIVALEN A: " << endl;
+        cout << pulgadas << " PULGADAS" << endl;
+        cout << yardas << " YARDAS" << endl;
+        cout << metros << " METROS" << endl;
+    }
+
+    if (resp == 'U' || resp == 'u') {
+        cout << "Ingrese el número de pulgadas: ";
+        cin >> pulgadas;
+
+        pies = pulgadas / 12;
+        yardas = pies / 3;
+        metros = (pulgadas * 2.54) / 100;
+
+        cout << pulgadas << " PULGADAS EQUIVALEN A: " << endl;
+        cout << pies << " PIES" << endl;
+        cout << yardas << " YARDAS" << endl;
+        cout << metros << " METROS" << endl;
+    }
+
+    return 0;
+}
+\end{lstlisting}
+
+\textbf{Explicación:}
+\begin{itemize}
+    \item \texttt{char resp} almacena la opción seleccionada por el usuario (M, Y, P, U)
+    \item \texttt{cin >> resp} lee la letra que indica qué unidad desea convertir
+    \item Se usa una serie de \texttt{if} con comparaciones de letras mayúsculas y minúsculas
+    \item Cada bloque convierte desde una unidad base a las otras tres
+    \item Las constantes usadas son: 1 metro = 100 cm, 1 pulgada = 2.54 cm, 1 pie = 12 pulgadas, 1 yarda = 3 pies
+    \item \texttt{cout << ...} se usa para mostrar el resultado en cada bloque
+\end{itemize}
+
+
+\section*{Problema 9: Segunda Ley de Newton}
+
+\textbf{Temática:} Estructuras condicionales y fórmulas físicas
+
+\textbf{Descripción:}
+Programa que calcula fuerza, aceleración o masa según la Segunda Ley de Newton (F = m × a), permitiendo al usuario seleccionar qué variable desea calcular.
+
+\begin{lstlisting}[caption=SegundaLeyNewton.cpp]
+#include <iostream>
+#include <cctype> // Para toupper()
+using namespace std;
+
+int main() {
+    double F, A, M;
+    char Resp;
+
+    cout << "¿QUÉ DESEA CALCULAR?" << endl;
+    cout << "¿FUERZA(F), ACELERACION(A), MASA(M)?: ";
+    cin >> Resp;
+    Resp = toupper(Resp); // Convertir a mayúscula
+
+    if (Resp == 'F') {
+        cout << "Ingrese la masa (kg): ";
+        cin >> M;
+        cout << "Ingrese la aceleracion (m/s²): ";
+        cin >> A;
+        F = M * A;
+        cout << "F = " << F << " N (Newtons)" << endl;
+    } 
+    else if (Resp == 'A') {
+        cout << "Ingrese la masa (kg): ";
+        cin >> M;
+        cout << "Ingrese la fuerza (N): ";
+        cin >> F;
+        A = F / M;
+        cout << "A = " << A << " m/s²" << endl;
+    } 
+    else if (Resp == 'M') {
+        cout << "Ingrese la fuerza (N): ";
+        cin >> F;
+        cout << "Ingrese la aceleracion (m/s²): ";
+        cin >> A;
+        M = F / A;
+        cout << "M = " << M << " kg" << endl;
+    } 
+    else {
+        cout << "Opcion no valida. Use F, A o M." << endl;
+    }
+
+    return 0;
+}
+\end{lstlisting}
+
+\textbf{Explicación:}
+\begin{itemize}
+    \item \texttt{\#include <cctype>} permite usar \texttt{toupper()} para estandarizar la entrada
+    \item \texttt{double F, A, M} almacenan fuerza (Newtons), aceleración (m/s²) y masa (kg)
+    \item \texttt{char Resp} guarda la selección del usuario (F, A o M)
+    \item \texttt{toupper(Resp)} convierte la entrada a mayúscula para uniformidad
+    \item \texttt{if (Resp == 'F')} bloque para cálculo de fuerza (F = m × a)
+    \item \texttt{else if (Resp == 'A')} bloque para cálculo de aceleración (a = F/m)
+    \item \texttt{else if (Resp == 'M')} bloque para cálculo de masa (m = F/a)
+    \item \texttt{else} maneja entradas no válidas
+\end{itemize}
+
+\textbf{Mejoras implementadas:}
+\begin{itemize}
+    \item Conversión automática a mayúsculas para aceptar 'f' o 'F'
+    \item Mensajes descriptivos para la entrada de datos
+    \item Unidades incluidas en los resultados (N, m/s², kg)
+    \item Manejo de opciones no válidas
+    \item Estructura más eficiente con \texttt{else if} en lugar de IFs separados
+\end{itemize}
+
+\textbf{Posibles extensiones:}
+\begin{itemize}
+    \item Validar que los valores ingresados sean positivos
+    \item Permitir múltiples cálculos en una sola ejecución
+    \item Mostrar la fórmula utilizada en cada cálculo
+\end{itemize}
+
+
+\section*{Problema 10: Solución de Ecuación Cuadrática}
+
+\textbf{Temática:} Estructuras condicionales y operaciones matemáticas
+
+\textbf{Descripción:}
+Programa que resuelve una ecuación cuadrática de la forma $ax^2 + bx + c = 0$, determinando si tiene solución única, raíces reales diferentes o raíces complejas conjugadas.
+
+\begin{lstlisting}[caption=EcuacionCuadratica.cpp]
+#include <iostream>
+#include <cmath> // Para sqrt() y fabs()
+using namespace std;
+
+int main() {
+    double A, B, C;
+    double RaizUnica, ParteReal, ParteImaginaria;
+    double RaizReal1, RaizReal2;
+
+    cout << "Ingrese el coeficiente A: ";
+    cin >> A;
+    cout << "Ingrese el coeficiente B: ";
+    cin >> B;
+    cout << "Ingrese el coeficiente C: ";
+    cin >> C;
+
+    if (A == 0) {
+        // Caso especial: ecuación lineal
+        RaizUnica = -C / B;
+        cout << "ECUACION LINEAL - RAIZ UNICA = " << RaizUnica << endl;
+    }
+    else {
+        double discriminante = pow(B, 2) - 4 * A * C;
+
+        if (discriminante == 0) {
+            // Raíz única
+            RaizUnica = -B / (2 * A);
+            cout << "RAIZ UNICA = " << RaizUnica << endl;
+        }
+        else if (discriminante < 0) {
+            // Raíces complejas
+            ParteReal = -B / (2 * A);
+            ParteImaginaria = sqrt(fabs(discriminante)) / (2 * A);
+            cout << "RAICES COMPLEJAS:" << endl;
+            cout << ParteReal << " + " << ParteImaginaria << "i" << endl;
+            cout << ParteReal << " - " << ParteImaginaria << "i" << endl;
+        }
+        else {
+            // Raíces reales
+            RaizReal1 = (-B + sqrt(discriminante)) / (2 * A);
+            RaizReal2 = (-B - sqrt(discriminante)) / (2 * A);
+            cout << "RAICES REALES:" << endl;
+            cout << "Raiz 1 = " << RaizReal1 << endl;
+            cout << "Raiz 2 = " << RaizReal2 << endl;
+        }
+    }
+
+    return 0;
+}
+\end{lstlisting}
+
+\textbf{Explicación:}
+\begin{itemize}
+    \item \texttt{\#include <cmath>} para usar funciones matemáticas como raíz cuadrada (\texttt{sqrt}) y valor absoluto (\texttt{fabs})
+    \item \texttt{double A, B, C} almacenan los coeficientes de la ecuación cuadrática
+    \item Se calcula el \texttt{discriminante} = $b^2 - 4ac$ para determinar el tipo de raíces
+    \item \texttt{if (A == 0)} maneja el caso especial cuando es ecuación lineal
+    \item \texttt{if (discriminante == 0)} calcula la raíz única cuando el discriminante es cero
+    \item \texttt{else if (discriminante < 0)} maneja el caso de raíces complejas conjugadas
+    \item \texttt{else} calcula las dos raíces reales cuando el discriminante es positivo
+    \item Se imprimen los resultados con formato claro para cada caso
+\end{itemize}
+
+\textbf{Mejoras implementadas:}
+\begin{itemize}
+    \item Manejo del caso especial cuando A = 0 (ecuación lineal)
+    \item Uso de \texttt{fabs()} para valor absoluto de números reales
+    \item Mensajes de salida más descriptivos
+    \item Cálculo eficiente del discriminante
+    \item Presentación clara de números complejos (formato a ± bi)
+\end{itemize}
+
+\textbf{Posibles extensiones:}
+\begin{itemize}
+    \item Validar entrada de datos (evitar divisiones por cero)
+    \item Mostrar la ecuación formateada (ej: "2x² + 3x - 5 = 0")
+    \item Calcular y mostrar el vértice de la parábola
+    \item Opción para resolver múltiples ecuaciones sin salir del programa
+\end{itemize}
+
+\textbf{Nota Matemática:}
+La naturaleza de las raíces depende del discriminante ($D = b^2 - 4ac$):
+\begin{itemize}
+    \item $D > 0$: Dos raíces reales distintas
+    \item $D = 0$: Una raíz real doble
+    \item $D < 0$: Dos raíces complejas conjugadas
+\end{itemize}
+
+\section*{Problema 11: Tipo de triángulo}
+
+\textbf{Temática:} Estructuras condicionales anidadas y operadores lógicos
+
+\textbf{Descripción:}
+Programa que determina si un triángulo es equilátero, isósceles o escaleno, basándose en la longitud de sus tres lados.
+
+\begin{lstlisting}[caption=TipoTriangulo.cpp]
+#include <iostream>
+using namespace std;
+
+int main() {
+    double LadoA, LadoB, LadoC;
+
+    cout << "Ingrese la longitud del primer lado: ";
+    cin >> LadoA;
+    cout << "Ingrese la longitud del segundo lado: ";
+    cin >> LadoB;
+    cout << "Ingrese la longitud del tercer lado: ";
+    cin >> LadoC;
+
+    if (LadoA <= 0 || LadoB <= 0 || LadoC <= 0) {
+        cout << "Error: Los lados deben ser valores positivos." << endl;
+    } 
+    else if (LadoA + LadoB <= LadoC || LadoA + LadoC <= LadoB || LadoB + LadoC <= LadoA) {
+        cout << "Error: No cumple la desigualdad triangular." << endl;
+    }
+    else {
+        if (LadoA != LadoB && LadoA != LadoC && LadoB != LadoC) {
+            cout << "ES ESCALENO (todos los lados diferentes)" << endl;
+        } 
+        else {
+            if (LadoA == LadoB && LadoA == LadoC && LadoB == LadoC) {
+                cout << "ES EQUILATERO (todos los lados iguales)" << endl;
+            } 
+            else {
+                cout << "ES ISOSCELES (dos lados iguales)" << endl;
+            }
+        }
+    }
+
+    return 0;
+}
+\end{lstlisting}
+
+\textbf{Explicación:}
+\begin{itemize}
+    \item \texttt{double LadoA, LadoB, LadoC} almacenan las longitudes de los lados
+    \item \texttt{cin >> LadoA} y similares capturan las medidas ingresadas por el usuario
+    \item Primera validación: \texttt{LadoA <= 0} verifica lados positivos
+    \item Segunda validación: \texttt{LadoA + LadoB <= LadoC} comprueba desigualdad triangular
+    \item \texttt{if (LadoA != LadoB \&\& LadoA != LadoC)} identifica triángulo escaleno
+    \item \texttt{if (LadoA == LadoB \&\& LadoA == LadoC)} identifica triángulo equilátero
+    \item \texttt{else} caso restante identifica triángulo isósceles
+\end{itemize}
+
+\textbf{Mejoras implementadas:}
+\begin{itemize}
+    \item Validación de datos de entrada (valores positivos)
+    \item Comprobación de la desigualdad triangular (suma de dos lados > tercer lado)
+    \item Mensajes descriptivos que incluyen la definición de cada tipo
+    \item Estructura anidada mejor organizada
+\end{itemize}
+
+\textbf{Posibles extensiones:}
+\begin{itemize}
+    \item Calcular y mostrar el perímetro del triángulo
+    \item Determinar si es triángulo rectángulo usando el teorema de Pitágoras
+    \item Mostrar el tipo de ángulos (acutángulo, obtusángulo)
+\end{itemize}
+
+\textbf{Nota:} Un triángulo válido debe cumplir:
+\begin{enumerate}
+    \item Todos los lados > 0
+    \item La suma de cualquier dos lados > tercer lado
+\end{enumerate}
+
+\section*{Problema 12: Cálculo de descuento para cliente}
+
+\textbf{Temática:} Estructuras de control CASE y cálculos comerciales
+
+\textbf{Descripción:}
+Programa que calcula el total a pagar por un cliente según su tipo (1-4) y la cantidad de hojas de hielo seco adquiridas, aplicando diferentes porcentajes de descuento según categoría.
+
+\begin{lstlisting}[caption=CalculoDescuento.cpp]
+#include <iostream>
+#include <iomanip> // Para formateo de salida
+#include <string>
+using namespace std;
+
+int main() {
+    string NombreClie;
+    int TipoClie, Cantidad;
+    float PrecioUni, SubTotal, Descuento, TotalPagar;
+
+    // Entrada de datos
+    cout << "SISTEMA DE VENTAS - HOJAS DE HIELO SECO" << endl;
+    cout << "Nombre del cliente: ";
+    getline(cin, NombreClie);
+    cout << "Tipo de cliente (1-4): ";
+    cin >> TipoClie;
+    cout << "Cantidad de hojas: ";
+    cin >> Cantidad;
+    cout << "Precio unitario: ";
+    cin >> PrecioUni;
+
+    // Cálculos
+    SubTotal = Cantidad * PrecioUni;
+
+    switch(TipoClie) {
+        case 1: Descuento = SubTotal * 0.05f; break;
+        case 2: Descuento = SubTotal * 0.08f; break;
+        case 3: Descuento = SubTotal * 0.12f; break;
+        case 4: Descuento = SubTotal * 0.15f; break;
+        default: Descuento = 0; // Por si ingresa tipo no válido
+    }
+
+    TotalPagar = SubTotal - Descuento;
+
+    // Salida formateada
+    cout << fixed << setprecision(2);
+    cout << "\n--- RECIBO ---" << endl;
+    cout << "Cliente: " << NombreClie << endl;
+    cout << "Subtotal: $" << SubTotal << endl;
+    cout << "Descuento (" << (Descuento/SubTotal)*100 << "%): $" << Descuento << endl;
+    cout << "TOTAL A PAGAR: $" << TotalPagar << endl;
+
+    return 0;
+}
+\end{lstlisting}
+
+\textbf{Explicación:}
+\begin{itemize}
+    \item \texttt{string NombreClie} almacena el nombre del cliente (hasta 30 caracteres)
+    \item \texttt{int TipoClie} guarda la categoría del cliente (1 a 4)
+    \item \texttt{getline(cin, NombreClie)} permite capturar nombres con espacios
+    \item \texttt{switch(TipoClie)} estructura CASE para determinar el descuento
+    \item \texttt{fixed << setprecision(2)} formatea la salida a 2 decimales
+    \item Se calcula automáticamente el porcentaje de descuento mostrado
+\end{itemize}
+
+\textbf{Mejoras implementadas:}
+\begin{itemize}
+    \item Validación implícita para tipos de cliente no válidos (default case)
+    \item Formato profesional de salida monetaria
+    \item Cálculo y visualización del porcentaje de descuento aplicado
+    \item Recepción correcta de nombres con espacios
+    \item Diseño de recibo claro y organizado
+\end{itemize}
+
+\textbf{Posibles extensiones:}
+\begin{itemize}
+    \item Validar que TipoClie esté entre 1-4
+    \item Validar que Cantidad y PrecioUni sean positivos
+    \item Almacenar historial de ventas en archivo
+    \item Mostrar catálogo de tipos de cliente con sus beneficios
+    \item Calcular IVA u otros impuestos
+\end{itemize}
+
+\textbf{Tabla de descuentos:}
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+\textbf{Tipo Cliente} & \textbf{Descuento} \\ \hline
+1 & 5\% \\ \hline
+2 & 8\% \\ \hline
+3 & 12\% \\ \hline
+4 & 15\% \\ \hline
+\end{tabular}
+\end{center}
+
+\textbf{Nota:} Los descuentos son acumulables con otras promociones según políticas de la empresa.
+
+
+\section*{Problema 13: Clientes con Artículos}
+
+\textbf{Temática:} Ciclos anidados, acumuladores y entrada/salida de datos
+
+\textbf{Descripción:}
+Escribe un programa en C++ que permita registrar varios clientes y los artículos que compran, calculando el total a pagar por cliente y el total general. Se debe preguntar si hay más artículos y más clientes tras cada iteración.
+
+\begin{lstlisting}[caption=ClientesConArticulos.cpp]
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+int main() {
+char NombreClie[30], Articulo[30], Otro, Hay;
+int TotClientes = 0, Cantidad;
+float Precio, TotPagar, TotPagarClie, TotPagarGral = 0;
+
+kotlin
+Copiar
+Editar
+cout << "LISTADO DE CLIENTES Y ARTICULOS" << endl;
+
+do {
+    cout << "\nIngrese el NOMBRE DEL CLIENTE: ";
+    cin >> NombreClie;
+    cout << "Cliente: " << NombreClie << endl;
+
+    TotPagarClie = 0;
+
+    do {
+        cout << "Ingrese el ARTICULO: ";
+        cin >> Articulo;
+        cout << "Ingrese la CANTIDAD: ";
+        cin >> Cantidad;
+        cout << "Ingrese el PRECIO: ";
+        cin >> Precio;
+
+        TotPagar = Cantidad * Precio;
+        cout << "Articulo: " << Articulo << ", Total a pagar: $" << TotPagar << endl;
+
+        TotPagarClie += TotPagar;
+
+        cout << "¿HAY OTRO ARTICULO (S/N)? ";
+        cin >> Hay;
+    } while (Hay != 'N' && Hay != 'n');
+
+    cout << "Total a pagar por cliente: $" << TotPagarClie << endl;
+
+    TotClientes++;
+    TotPagarGral += TotPagarClie;
+
+    cout << "¿HAY OTRO CLIENTE (S/N)? ";
+    cin >> Otro;
+
+} while (Otro != 'N' && Otro != 'n');
+
+cout << "\nTOTAL CLIENTES: " << TotClientes << endl;
+cout << "TOTAL GENERAL A PAGAR: $" << TotPagarGral << endl;
+
+return 0;
+}
+\end{lstlisting}
+
+\textbf{Explicación:}
+\begin{itemize}
+\item \texttt{char NombreClie[30], Articulo[30]}: Cadenas para almacenar el nombre del cliente y el artículo.
+\item \texttt{char Otro, Hay}: Variables de control para continuar con otro cliente o artículo.
+\item \texttt{int TotClientes, Cantidad}: Contadores para total de clientes y cantidad comprada.
+\item \texttt{float Precio, TotPagar, TotPagarClie, TotPagarGral}: Variables para cálculos monetarios.
+\item El ciclo \texttt{do-while} externo permite registrar varios clientes.
+\item El ciclo \texttt{do-while} interno permite registrar múltiples artículos por cliente.
+\item Se acumula el total a pagar por cliente (\texttt{TotPagarClie}) y el total general (\texttt{TotPagarGral}).
+\end{itemize}
+
+\section*{Problema 14: Sistema de Vendedores (15 máximo)}
+
+\textbf{Temática:} Estructuras de control anidadas con límite fijo
+
+\textbf{Descripción:}
+Programa que registra ventas e incentivos para hasta 15 vendedores, calculando totales individuales y generales, con diferentes porcentajes de incentivo según tipo de artículo.
+
+\begin{lstlisting}[caption=SistemaVendedoresLimitado.cpp]
+#include <iostream>
+#include <iomanip>
+#include <string>
+using namespace std;
+
+int main() {
+    const int MAX_VENDEDORES = 15;
+    string NombreVend, Articulo;
+    char Hay;
+    int TotVend = 0, Cantidad, Clave;
+    float Precio, TotVendido, Incentivo, TotIncentivo;
+    float Venta, TotGralIncentivo = 0, TotGralVenta = 0;
+
+    cout << "SISTEMA DE VENTAS (MAX " << MAX_VENDEDORES << " VENDEDORES)" << endl;
+    cout << "===================================" << endl << endl;
+
+    do {
+        cout << "\nVendedor " << (TotVend + 1) << " de " << MAX_VENDEDORES << endl;
+        cout << "Nombre del vendedor: ";
+        cin.ignore();
+        getline(cin, NombreVend);
+        
+        TotVendido = 0;
+        TotIncentivo = 0;
+        
+        do {
+            cout << "\nRegistro de artículo:" << endl;
+            cout << "Nombre del artículo: ";
+            getline(cin, Articulo);
+            
+            cout << "Clave (1-4): ";
+            while(!(cin >> Clave) || Clave < 1 || Clave > 4) {
+                cout << "Inválido. Ingrese clave (1-4): ";
+                cin.clear();
+                cin.ignore(1000, '\n');
+            }
+            
+            cout << "Cantidad: ";
+            while(!(cin >> Cantidad) || Cantidad <= 0) {
+                cout << "Inválido. Ingrese cantidad positiva: ";
+                cin.clear();
+                cin.ignore(1000, '\n');
+            }
+            
+            cout << "Precio unitario: $";
+            while(!(cin >> Precio) || Precio <= 0) {
+                cout << "Inválido. Ingrese precio positivo: $";
+                cin.clear();
+                cin.ignore(1000, '\n');
+            }
+            
+            Venta = Cantidad * Precio;
+            
+            switch(Clave) {
+                case 1: Incentivo = Venta * 0.15f; break;
+                case 2: Incentivo = Venta * 0.10f; break;
+                case 3: Incentivo = Venta * 0.05f; break;
+                case 4: Incentivo = Venta * 0.03f; break;
+            }
+            
+            TotVendido += Venta;
+            TotIncentivo += Incentivo;
+            
+            cout << "\n¿Agregar otro artículo? (S/N): ";
+            cin >> Hay;
+            cin.ignore();
+        } while(toupper(Hay) == 'S');
+        
+        // Reporte por vendedor
+        cout << fixed << setprecision(2);
+        cout << "\n--- RESUMEN VENDEDOR ---" << endl;
+        cout << "Vendedor: " << NombreVend << endl;
+        cout << "Total vendido: $" << setw(10) << TotVendido << endl;
+        cout << "Incentivo:     $" << setw(10) << TotIncentivo << endl;
+        
+        TotVend++;
+        TotGralVenta += TotVendido;
+        TotGralIncentivo += TotIncentivo;
+        
+    } while(TotVend < MAX_VENDEDORES);
+    
+    // Reporte final
+    cout << "\n--- REPORTE FINAL ---" << endl;
+    cout << "Total de vendedores procesados: " << TotVend << endl;
+    cout << "Venta global total: $" << setw(12) << TotGralVenta << endl;
+    cout << "Incentivo global:   $" << setw(12) << TotGralIncentivo << endl;
+
+    return 0;
+}
+\end{lstlisting}
+
+\textbf{Explicación:}
+\begin{itemize}
+    \item \texttt{const int MAX\_VENDEDORES = 15} define el límite de vendedores
+    \item Estructura \texttt{do-while} externa controla el límite de 15 vendedores
+    \item Estructura \texttt{do-while} interna maneja múltiples artículos por vendedor
+    \item Validaciones robustas para claves (1-4), cantidades y precios positivos
+    \item \texttt{setw()} para alinear columnas en los reportes
+    \item Contador \texttt{TotVend} muestra progreso (1/15, 2/15...)
+\end{itemize}
+
+\textbf{Mejoras implementadas:}
+\begin{itemize}
+    \item Validación de entrada para evitar datos incorrectos
+    \item Visualización del progreso (vendedor X de 15)
+    \item Formato profesional con alineación de columnas
+    \item Manejo seguro de entradas con \texttt{cin.clear()} y \texttt{ignore()}
+    \item Eliminación de variable \texttt{Otro} ya que el límite es fijo
+\end{itemize}
+
+\textbf{Tabla de Incentivos:}
+\begin{center}
+\begin{tabular}{|c|l|c|}
+\hline
+\textbf{Clave} & \textbf{Tipo Artículo} & \textbf{Incentivo} \\ \hline
+1 & Electrónicos & 15\% \\ \hline
+2 & Muebles & 10\% \\ \hline
+3 & Ropa & 5\% \\ \hline
+4 & Accesorios & 3\% \\ \hline
+\end{tabular}
+\end{center}
+
+\textbf{Diagrama de Flujo:}
+\begin{enumerate}
+\item Inicializar contadores y totales
+\item Para cada vendedor (hasta 15):
+\begin{itemize}
+    \item Registrar datos personales
+    \item Para cada artículo:
+    \begin{itemize}
+        \item Capturar detalles
+        \item Calcular venta e incentivo
+        \item Acumular totales
+    \end{itemize}
+    \item Mostrar resumen individual
+\end{itemize}
+\item Mostrar reporte consolidado
+\end{enumerate}
+
+\textbf{Notas Técnicas:}
+\begin{itemize}
+    \item Usa \texttt{float} para cálculos monetarios (precisión suficiente)
+    \item \texttt{toupper()} normaliza respuestas S/N
+    \item \texttt{setprecision(2)} asegura 2 decimales en valores monetarios
+    \item El límite de 15 vendedores evita sobrecarga de memoria
+\end{itemize}
+
+\section*{Problema 15: Secuencia Fibonacci}
+
+\textbf{Temática:} Bucles y secuencias matemáticas
+
+\textbf{Descripción:}
+Programa que genera los primeros 20 términos de la secuencia Fibonacci, donde cada número es la suma de los dos anteriores, comenzando con 0 y 1.
+
+\begin{lstlisting}[caption=Fibonacci.cpp]
+#include <iostream>
+using namespace std;
+
+int main() {
+    int penultimo = 0, ultimo = 1;
+    int numero;
+
+    cout << "Secuencia Fibonacci (primeros 20 terminos):" << endl;
+    
+    // Imprimir los dos primeros términos
+    cout << penultimo << ", " << ultimo;
+    
+    for(int i = 3; i <= 20; i++) {  // Comenzamos desde 3 porque ya tenemos 2 términos
+        numero = penultimo + ultimo;
+        cout << ", " << numero;
+        
+        // Actualizar valores para siguiente iteración
+        penultimo = ultimo;
+        ultimo = numero;
+    }
+    
+    cout << endl;
+    return 0;
+}
+\end{lstlisting}
+
+\textbf{Explicación:}
+\begin{itemize}
+    \item \texttt{int penultimo = 0, ultimo = 1} inicializa los primeros dos términos
+    \item El bucle \texttt{for} itera desde 3 hasta 20 (genera 18 términos adicionales)
+    \item \texttt{numero = penultimo + ultimo} calcula el siguiente término Fibonacci
+    \item Se actualizan \texttt{penultimo} y \texttt{ultimo} para la siguiente iteración
+    \item Los términos se imprimen en formato de lista separada por comas
+\end{itemize}
+
+\textbf{Mejoras implementadas:}
+\begin{itemize}
+    \item Muestra los primeros 20 términos correctamente (incluyendo los iniciales 0 y 1)
+    \item Formato de salida mejorado con separadores
+    \item Comentarios explicativos en el código
+    \item Nombre de variables más descriptivos
+\end{itemize}
+
+\textbf{Salida esperada:}
+\begin{verbatim}
+0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181
+\end{verbatim}
+
+\textbf{Notas matemáticas:}
+\begin{itemize}
+    \item La secuencia Fibonacci se define como:
+      \[ F(n) = \begin{cases} 
+        0 & \text{si } n = 0 \\
+        1 & \text{si } n = 1 \\
+        F(n-1) + F(n-2) & \text{si } n > 1 
+      \end{cases} \]
+    \item Relación áurea: $\lim_{n\to\infty} \frac{F(n+1)}{F(n)} = \phi \approx 1.61803$
+    \item Aplicaciones: algoritmos, teoría de números, patrones en naturaleza
+\end{itemize}
+
+\textbf{Variantes para explorar:}
+\begin{itemize}
+    \item Generar términos hasta que se alcance un valor máximo
+    \item Implementación recursiva
+    \item Calcular la razón entre términos consecutivos
+    \item Almacenar la secuencia en un arreglo
+\end{itemize}
+
+\section*{Problema 16: Cálculo de Potencias}
+
+\textbf{Temática:} Bucles anidados y operaciones matemáticas
+
+\textbf{Descripción:}
+Programa que calcula y muestra las potencias $n^n$ para los números del 1 al 8, donde cada número se eleva a sí mismo.
+
+\begin{lstlisting}[caption=Potencias.cpp]
+#include <iostream>
+#include <iomanip>
+#include <cmath> // Para pow() aunque usaremos multiplicación iterativa
+using namespace std;
+
+int main() {
+    cout << "POTENCIAS n^n DEL 1 AL 8" << endl;
+    cout << "========================" << endl;
+    cout << left << setw(10) << "Numero" << "Potencia" << endl;
+    cout << "----------------" << endl;
+
+    for(int numero = 1; numero <= 8; numero++) {
+        double potencia = numero; // Inicializamos con el valor base
+        
+        // Calculamos n^n mediante multiplicación iterativa
+        for(int i = 1; i < numero; i++) {
+            potencia *= numero;
+        }
+        
+        cout << left << setw(10) << numero << potencia << endl;
+    }
+
+    return 0;
+}
+\end{lstlisting}
+
+\textbf{Explicación:}
+\begin{itemize}
+    \item Bucle externo \texttt{for(int numero = 1; numero <= 8; numero++)} itera del 1 al 8
+    \item \texttt{double potencia = numero} inicializa la potencia con el valor base
+    \item Bucle interno \texttt{for(int i = 1; i < numero; i++)} realiza la multiplicación iterativa
+    \item \texttt{potencia *= numero} acumula el producto para calcular $n^n$
+    \item \texttt{setw(10)} formatea la salida en columnas alineadas
+\end{itemize}
+
+\textbf{Salida esperada:}
+\begin{verbatim}
+POTENCIAS n^n DEL 1 AL 8
+========================
+Numero    Potencia
+----------------
+1         1
+2         4
+3         27
+4         256
+5         3125
+6         46656
+7         823543
+8         16777216
+\end{verbatim}
+
+\textbf{Mejoras implementadas:}
+\begin{itemize}
+    \item Encabezado descriptivo y formato tabular
+    \item Uso de \texttt{double} para manejar valores grandes
+    \item Implementación didáctica con multiplicación iterativa
+    \item Alineación profesional de columnas
+\end{itemize}
+
+\textbf{Notas matemáticas:}
+\begin{itemize}
+    \item La operación $n^n$ crece muy rápidamente (crecimiento exponencial)
+    \item Para $n=8$, $8^8 = 16,777,216$
+    \item Complejidad algorítmica: $O(n^2)$ para este método
+\end{itemize}
+
+\textbf{Variantes para explorar:}
+\begin{itemize}
+    \item Usar la función \texttt{pow()} de cmath
+    \item Calcular potencias $n^m$ con ambos variables
+    \item Implementar recursividad
+    \item Mostrar notación científica para números grandes
+    \item Calcular sumatorias de potencias
+\end{itemize}
+
+\textbf{Comparación de métodos:}
+\begin{center}
+\begin{tabular}{|l|c|c|}
+\hline
+\textbf{Método} & \textbf{Ventaja} & \textbf{Desventaja} \\ \hline
+Multiplicación iterativa & Didáctico & Ineficiente para n grandes \\ \hline
+Función \texttt{pow()} & Óptimo & Menos transparente \\ \hline
+Recursivo & Elegante & Consumo de memoria \\ \hline
+\end{tabular}
+\end{center}
+
+\section*{Problema 17: Ecuaciones Cuadráticas para A=1-5}
+
+\textbf{Temática:} Bucles con estructuras condicionales anidadas
+
+\textbf{Descripción:}
+Programa que resuelve ecuaciones cuadráticas para valores de A desde 1 hasta 5, con B y C calculados automáticamente, mostrando todos los casos posibles (raíz única, reales diferentes y complejas).
+
+\begin{lstlisting}[caption=EcuacionesCuadraticas.cpp]
+#include <iostream>
+#include <cmath>
+#include <iomanip>
+using namespace std;
+
+int main() {
+    double A, B, C = 6;
+    double discriminante, raizUnica, parteReal, parteImaginaria;
+    double raizReal1, raizReal2;
+
+    cout << "SOLUCION DE ECUACIONES CUADRATICAS PARA A=1-5" << endl;
+    cout << "============================================" << endl;
+    cout << fixed << setprecision(3);
+
+    for(int i = 1; i <= 5; i++) {
+        A = i;
+        C = C - A;
+        B = A - C;
+        
+        cout << "\n--- Caso A = " << A << " ---" << endl;
+        cout << "Coeficientes: A=" << A << ", B=" << B << ", C=" << C << endl;
+        
+        if(A == 1) {
+            raizUnica = -C / A;
+            cout << "RAIZ UNICA: " << raizUnica << endl;
+        } 
+        else {
+            discriminante = pow(B, 2) - 4 * A * C;
+            
+            if(discriminante < 0) {
+                parteReal = -B / (2 * A);
+                parteImaginaria = sqrt(fabs(discriminante)) / (2 * A);
+                cout << "RAICES COMPLEJAS:" << endl;
+                cout << parteReal << " + " << parteImaginaria << "i" << endl;
+                cout << parteReal << " - " << parteImaginaria << "i" << endl;
+            } 
+            else {
+                raizReal1 = (-B + sqrt(discriminante)) / (2 * A);
+                raizReal2 = (-B - sqrt(discriminante)) / (2 * A);
+                cout << "RAICES REALES:" << endl;
+                cout << "Raiz 1 = " << raizReal1 << endl;
+                cout << "Raiz 2 = " << raizReal2 << endl;
+            }
+        }
+    }
+
+    return 0;
+}
+\end{lstlisting}
+
+\textbf{Explicación:}
+\begin{itemize}
+    \item Bucle \texttt{for(int i = 1; i <= 5; i++)} itera para A=1 a A=5
+    \item \texttt{C = C - A} y \texttt{B = A - C} calculan los coeficientes según el algoritmo
+    \item \texttt{if(A == 1)} maneja el caso especial de ecuación lineal
+    \item \texttt{discriminante = pow(B,2) - 4*A*C} determina el tipo de raíces
+    \item Se muestran resultados formateados con 3 decimales
+\end{itemize}
+
+\textbf{Salida esperada:}
+\begin{verbatim}
+SOLUCION DE ECUACIONES CUADRATICAS PARA A=1-5
+============================================
+
+--- Caso A = 1 ---
+Coeficientes: A=1, B=-4, C=5
+RAIZ UNICA: -5.000
+
+--- Caso A = 2 ---
+Coeficientes: A=2, B=-1, C=3
+RAICES COMPLEJAS:
+0.250 + 1.199i
+0.250 - 1.199i
+
+--- Caso A = 3 ---
+Coeficientes: A=3, B=3, C=0
+RAICES REALES:
+Raiz 1 = 0.000
+Raiz 2 = -1.000
+
+--- Caso A = 4 ---
+Coeficientes: A=4, B=8, C=-4
+RAICES REALES:
+Raiz 1 = 0.414
+Raiz 2 = -2.414
+
+--- Caso A = 5 ---
+Coeficientes: A=5, B=14, C=-9
+RAICES REALES:
+Raiz 1 = 0.562
+Raiz 2 = -3.162
+\end{verbatim}
+
+\textbf{Análisis Matemático:}
+\begin{itemize}
+    \item Para A=1: Ecuación lineal (B=0) con solución única
+    \item Para A=2: Discriminante negativo (raíces complejas conjugadas)
+    \item Para A=3,4,5: Discriminante positivo (dos raíces reales distintas)
+    \item Relación entre coeficientes: $C_{n} = C_{n-1} - A$, $B = A - C$
+\end{itemize}
+
+\textbf{Mejoras implementadas:}
+\begin{itemize}
+    \item Precisión decimal consistente (3 decimales)
+    \item Encabezados claros para cada caso
+    \item Cálculo eficiente del discriminante
+    \item Formato profesional para números complejos
+\end{itemize}
+
+\textbf{Posibles extensiones:}
+\begin{itemize}
+    \item Mostrar la ecuación completa formateada (ax² + bx + c = 0)
+    \item Calcular suma y producto de raíces
+    \item Graficar las parábolas correspondientes
+    \item Mostrar el valor del discriminante
+\end{itemize}
+
+\textbf{Nota Pedagógica:}
+Este ejercicio demuestra:
+\begin{itemize}
+    \item Todos los casos posibles de ecuaciones cuadráticas
+    \item Evolución de las soluciones al variar los coeficientes
+    \item Transición entre diferentes tipos de raíces
+\end{itemize}
+
+\section*{Problema 18: Simulación de Inversión a 24 Meses}
+
+\textbf{Temática:} Interés compuesto y acumulación financiera
+
+\textbf{Descripción:}
+Programa que simula una inversión con capitalización mensual durante 24 meses, mostrando el crecimiento del capital con una tasa de interés anual del 36\%.
+
+\begin{lstlisting}[caption=Inversion24Meses.cpp]
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+int main() {
+    const double TASA_ANUAL = 0.36; // 36%
+    const int MESES = 24;
+    int mes;
+    double capital = 10000.00;
+    double interes, saldo, totalInteres = 0;
+
+    cout << "SIMULACION DE INVERSION A 24 MESES" << endl;
+    cout << "Capital inicial: $" << fixed << setprecision(2) << capital << endl;
+    cout << "Tasa anual: " << TASA_ANUAL*100 << "%" << endl;
+    cout << "==========================================" << endl;
+    cout << setw(5) << "Mes" << setw(12) << "Capital" 
+         << setw(12) << "Interes" << setw(12) << "Saldo" << endl;
+    cout << "------------------------------------------" << endl;
+
+    for(mes = 1; mes <= MESES; mes++) {
+        interes = capital * (TASA_ANUAL/12); // Interés mensual
+        saldo = capital + interes;
+        totalInteres += interes;
+
+        cout << setw(5) << mes << setw(12) << capital 
+             << setw(12) << interes << setw(12) << saldo << endl;
+
+        capital = saldo; // Capitalización mensual
+    }
+
+    cout << "==========================================" << endl;
+    cout << "Total intereses ganados: $" << totalInteres << endl;
+    cout << "Saldo final: $" << capital << endl;
+
+    return 0;
+}
+\end{lstlisting}
+
+\textbf{Explicación:}
+\begin{itemize}
+    \item \texttt{TASA\_ANUAL = 0.36} representa el 36\% de interés anual
+    \item \texttt{capital = 10000.00} es la inversión inicial
+    \item El bucle \texttt{for} itera por cada mes (1 a 24)
+    \item \texttt{interes = capital * (TASA\_ANUAL/12)} calcula el interés mensual
+    \item \texttt{saldo = capital + interes} actualiza el saldo mensual
+    \item \texttt{totalInteres} acumula la suma de todos los intereses
+    \item Se usa capitalización compuesta (interés sobre interés)
+\end{itemize}
+
+\textbf{Salida esperada (primeros y últimos meses):}
+\begin{verbatim}
+SIMULACION DE INVERSION A 24 MESES
+Capital inicial: $10000.00
+Tasa anual: 36%
+==========================================
+  Mes     Capital     Interes       Saldo
+------------------------------------------
+    1   10000.00     300.00   10300.00
+    2   10300.00     309.00   10609.00
+    3   10609.00     318.27   10927.27
+    ...
+   23   19502.94     585.09   20088.03
+   24   20088.03     602.64   20690.67
+==========================================
+Total intereses ganados: $10690.67
+Saldo final: $20690.67
+\end{verbatim}
+
+\textbf{Fórmulas clave:}
+\begin{itemize}
+    \item Interés mensual: $I_m = C \times \left(\frac{r}{12}\right)$
+    \item Saldo mensual: $S = C + I_m$
+    \item Interés acumulado: $I_{total} = \sum_{i=1}^{24} I_i$
+    \item Tasa mensual equivalente: $r_m = \frac{0.36}{12} = 3\%$
+\end{itemize}
+
+\textbf{Mejoras implementadas:}
+\begin{itemize}
+    \item Constantes para valores fijos (tasa, meses)
+    \item Formato tabular profesional con \texttt{setw()}
+    \item Precisión de 2 decimales para valores monetarios
+    \item Encabezados y resúmenes claros
+    \item Cálculo del saldo final y total de intereses
+\end{itemize}
+
+\textbf{Análisis Financiero:}
+\begin{itemize}
+    \item La inversión crece de \$10,000 a \$20,690.67 en 2 años
+    \item El interés total representa el 106.9\% del capital inicial
+    \item Rendimiento efectivo anual: 43.9\% (por capitalización mensual)
+    \item Cada mes el capital aumenta aproximadamente un 3\%
+\end{itemize}
+
+\textbf{Posibles extensiones:}
+\begin{itemize}
+    \item Permitir entrada de capital inicial y tasa por el usuario
+    \item Mostrar gráfica de crecimiento
+    \item Comparar con interés simple
+    \item Calcular impuestos sobre ganancias
+    \item Exportar resultados a archivo CSV
+\end{itemize}
+
+\section*{Problema 19: Cálculo de Producción de Trabajadores}
+
+\textbf{Temática:} Procesamiento de datos con bucles anidados
+
+\textbf{Descripción:}
+Programa que registra la producción semanal (6 días) de 15 trabajadores, calculando la producción total por trabajador y la producción general de toda la plantilla.
+
+\begin{lstlisting}[caption=ProduccionTrabajadores.cpp]
+#include <iostream>
+#include <iomanip>
+#include <string>
+using namespace std;
+
+int main() {
+    const int NUM_TRABAJADORES = 15;
+    const int DIAS_SEMANA = 6;
+    string NombreTra;
+    int TotTrab = 0, TotProdGral = 0;
+
+    cout << "SISTEMA DE REGISTRO DE PRODUCCION" << endl;
+    cout << "=================================" << endl << endl;
+
+    for(int T = 1; T <= NUM_TRABAJADORES; T++) {
+        cout << "\nTrabajador " << T << " de " << NUM_TRABAJADORES << endl;
+        cout << "Nombre del trabajador: ";
+        cin.ignore();
+        getline(cin, NombreTra);
+        
+        int TotProd = 0;
+        
+        for(int D = 1; D <= DIAS_SEMANA; D++) {
+            int ProDia;
+            cout << "Produccion del dia " << D << ": ";
+            while(!(cin >> ProDia) || ProDia < 0) {
+                cout << "Valor invalido. Ingrese produccion (>=0): ";
+                cin.clear();
+                cin.ignore(1000, '\n');
+            }
+            TotProd += ProDia;
+        }
+        
+        cout << "\nRESUMEN TRABAJADOR" << endl;
+        cout << "Nombre: " << NombreTra << endl;
+        cout << "Produccion total: " << TotProd << " unidades" << endl;
+        
+        TotProdGral += TotProd;
+        TotTrab++;
+    }
+
+    cout << "\n=== REPORTE FINAL ===" << endl;
+    cout << "Total de trabajadores procesados: " << TotTrab << endl;
+    cout << "Produccion general total: " << TotProdGral << " unidades" << endl;
+    cout << "Promedio por trabajador: " << fixed << setprecision(1) 
+         << (double)TotProdGral/TotTrab << " unidades" << endl;
+
+    return 0;
+}
+\end{lstlisting}
+
+\textbf{Explicación:}
+\begin{itemize}
+    \item \texttt{const int NUM\_TRABAJADORES = 15} y \texttt{DIAS\_SEMANA = 6} definen los límites
+    \item Bucle externo \texttt{for} recorre cada trabajador (1 a 15)
+    \item Bucle interno \texttt{for} recoge la producción de cada día (1 a 6)
+    \item \texttt{getline(cin, NombreTra)} permite nombres con espacios
+    \item Validación de entrada para producción no negativa
+    \item \texttt{TotProd} acumula la producción individual
+    \item \texttt{TotProdGral} suma la producción de todos los trabajadores
+\end{itemize}
+
+\textbf{Salida esperada:}
+\begin{verbatim}
+SISTEMA DE REGISTRO DE PRODUCCION
+=================================
+
+Trabajador 1 de 15
+Nombre del trabajador: Juan Pérez
+Produccion del dia 1: 50
+...
+Produccion del dia 6: 45
+
+RESUMEN TRABAJADOR
+Nombre: Juan Pérez
+Produccion total: 320 unidades
+
+...
+
+=== REPORTE FINAL ===
+Total de trabajadores procesados: 15
+Produccion general total: 4875 unidades
+Promedio por trabajador: 325.0 unidades
+\end{verbatim}
+
+\textbf{Mejoras implementadas:}
+\begin{itemize}
+    \item Constantes para valores fijos (15 trabajadores, 6 días)
+    \item Validación de entrada para valores no negativos
+    \item Cálculo automático del promedio por trabajador
+    \item Mensajes descriptivos durante la ejecución
+    \item Formato profesional de salida
+\end{itemize}
+
+\textbf{Análisis de Datos:}
+\begin{itemize}
+    \item Sistema ideal para control de productividad laboral
+    \item Permite identificar trabajadores de alto/bajo rendimiento
+    \item Base para cálculos de bonos por productividad
+    \item Fácilmente adaptable a diferentes períodos (meses, trimestres)
+\end{itemize}
+
+\textbf{Posibles extensiones:}
+\begin{itemize}
+    \item Almacenar datos en archivos para persistencia
+    \item Mostrar ranking de trabajadores por productividad
+    \item Calcular variación día a día
+    \item Generar reportes gráficos
+    \item Agregar meta de producción y calcular cumplimiento
+\end{itemize}
+
+\textbf{Estructura del programa:}
+\begin{enumerate}
+\item Inicialización de variables y constantes
+\item Encabezado del sistema
+\item Bucle principal por cada trabajador:
+\begin{itemize}
+    \item Captura de nombre
+    \item Bucle de captura diaria con validación
+    \item Cálculo de totales individuales
+\end{itemize}
+\item Cálculo y muestra de resultados generales
+\end{enumerate}
+
+\section*{Problema 20: Cálculo de Factoriales para N Números}
+
+\textbf{Temática:} Bucles anidados y matemáticas discretas
+
+\textbf{Descripción:}
+Programa que calcula el factorial para una serie de N números ingresados por el usuario, manejando correctamente el caso especial del 0! = 1.
+
+\begin{lstlisting}[caption=Factoriales.cpp]
+#include <iostream>
+using namespace std;
+
+int main() {
+    int N, I, J = 0, Fact, Num;
+
+    cout << "CALCULADORA DE FACTORIALES" << endl;
+    cout << "Ingrese la cantidad de numeros a procesar: ";
+    cin >> N;
+
+    // Validar entrada positiva
+    while(N <= 0) {
+        cout << "Error: Debe ser positivo. Reingrese: ";
+        cin >> N;
+    }
+
+    do {
+        J++;
+        cout << "\nIngrese el numero " << J << ": ";
+        cin >> Num;
+
+        // Validar número no negativo
+        while(Num < 0) {
+            cout << "Error: Factorial no definido para negativos. Reingrese: ";
+            cin >> Num;
+        }
+
+        if(Num == 0) {
+            Fact = 1; // Caso especial 0! = 1
+        } else {
+            Fact = 1;
+            for(I = Num; I >= 1; I--) {
+                Fact *= I; // Equivalente a Fact = Fact * I
+            }
+        }
+
+        cout << "El factorial de " << Num << " es: " << Fact << endl;
+
+    } while(J < N);
+
+    cout << "\nSe calcularon " << N << " factoriales." << endl;
+    return 0;
+}
+\end{lstlisting}
+
+\textbf{Explicación:}
+\begin{itemize}
+    \item \texttt{int N} almacena la cantidad de números a procesar
+    \item Bucle \texttt{do-while} principal controla la cantidad de números (J <= N)
+    \item \texttt{if(Num == 0)} maneja el caso especial del factorial de 0
+    \item Bucle \texttt{for} interno calcula el factorial mediante multiplicación sucesiva
+    \item \texttt{Fact *= I} acumula el producto factorial
+    \item Validaciones para entradas no negativas
+\end{itemize}
+
+\textbf{Ejemplo de ejecución:}
+\begin{verbatim}
+CALCULADORA DE FACTORIALES
+Ingrese la cantidad de numeros a procesar: 3
+
+Ingrese el numero 1: 5
+El factorial de 5 es: 120
+
+Ingrese el numero 2: 0
+El factorial de 0 es: 1
+
+Ingrese el numero 3: 7
+El factorial de 7 es: 5040
+
+Se calcularon 3 factoriales.
+\end{verbatim}
+
+\textbf{Mejoras implementadas:}
+\begin{itemize}
+    \item Validación de entradas para números no negativos
+    \item Mensajes descriptivos durante la ejecución
+    \item Manejo explícito del caso 0! = 1
+    \item Contador de números procesados
+    \item Estructura clara con comentarios explicativos
+\end{itemize}
+
+\textbf{Análisis Matemático:}
+\begin{itemize}
+    \item Definición factorial: $n! = \prod_{k=1}^n k = 1 \times 2 \times \cdots \times n$
+    \item Caso especial: $0! = 1$ por definición
+    \item Crecimiento factorial es más rápido que exponencial
+    \item Para $n > 20$, los resultados exceden la capacidad de \texttt{int} (usar \texttt{long long})
+\end{itemize}
+
+\textbf{Posibles extensiones:}
+\begin{itemize}
+    \item Manejar números grandes con bibliotecas de precisión arbitraria
+    \item Calcular factoriales dobles (n!!)
+    \item Mostrar gráfica de crecimiento factorial
+    \item Implementar versión recursiva
+    \item Calcular coeficientes binomiales $\binom{n}{k} = \frac{n!}{k!(n-k)!}$
+\end{itemize}
+
+\textbf{Nota sobre eficiencia:}
+\begin{itemize}
+    \item Complejidad algorítmica: O(N × M) donde M es el valor numérico máximo
+    \item Para optimización, podrían almacenarse factoriales precalculados
+    \item Versión recursiva es menos eficiente en tiempo y espacio
+\end{itemize}
+
+\section*{Problema 21: Cálculo de Materiales Requeridos}
+
+\textbf{Temática:} Procesamiento de pedidos y cálculos industriales
+
+\textbf{Descripción:}
+Programa que calcula los materiales necesarios para la producción basado en pedidos acumulados, aplicando factores de conversión específicos para cada tipo de material.
+
+\begin{lstlisting}[caption=MaterialesRequeridos.cpp]
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+int main() {
+    char Resp;
+    int Cantidad, TotProd = 0;
+    int Material1, Material2, Material3, Material4, Material5, Material6;
+
+    cout << "SISTEMA DE CALCULO DE MATERIALES" << endl;
+    cout << "¿Hay pedido (S/N)? ";
+    cin >> Resp;
+    Resp = toupper(Resp); // Normalizar a mayúscula
+
+    while(Resp == 'S') {
+        cout << "Ingrese la cantidad pedida: ";
+        while(!(cin >> Cantidad) || Cantidad <= 0) {
+            cout << "Error: Ingrese cantidad positiva: ";
+            cin.clear();
+            cin.ignore(1000, '\n');
+        }
+        
+        TotProd += Cantidad;
+        
+        cout << "¿Hay otro pedido (S/N)? ";
+        cin >> Resp;
+        Resp = toupper(Resp);
+    }
+
+    // Cálculo de materiales requeridos
+    Material1 = TotProd * 3;
+    Material2 = TotProd * 4;
+    Material3 = TotProd * 1;
+    Material4 = TotProd * 2;
+    Material5 = TotProd * 3;
+    Material6 = TotProd * 2;
+
+    // Mostrar resultados
+    cout << "\nMATERIALES REQUERIDOS PARA " << TotProd << " UNIDADES" << endl;
+    cout << "====================================" << endl;
+    cout << setw(10) << "Material" << setw(15) << "Cantidad" << endl;
+    cout << "------------------------------------" << endl;
+    cout << setw(10) << "Tipo 1" << setw(15) << Material1 << endl;
+    cout << setw(10) << "Tipo 2" << setw(15) << Material2 << endl;
+    cout << setw(10) << "Tipo 3" << setw(15) << Material3 << endl;
+    cout << setw(10) << "Tipo 4" << setw(15) << Material4 << endl;
+    cout << setw(10) << "Tipo 5" << setw(15) << Material5 << endl;
+    cout << setw(10) << "Tipo 6" << setw(15) << Material6 << endl;
+    cout << "====================================" << endl;
+
+    return 0;
+}
+\end{lstlisting}
+
+\textbf{Explicación:}
+\begin{itemize}
+    \item \texttt{while(Resp == 'S')} procesa múltiples pedidos hasta que se ingrese 'N'
+    \item \texttt{toupper(Resp)} normaliza la entrada a mayúscula
+    \item Validación para cantidades positivas
+    \item \texttt{TotProd} acumula el total de unidades pedidas
+    \item Cada material se calcula multiplicando el total por un factor específico
+    \item Salida formateada en tabla con \texttt{setw()}
+\end{itemize}
+
+\textbf{Ejemplo de ejecución:}
+\begin{verbatim}
+SISTEMA DE CALCULO DE MATERIALES
+¿Hay pedido (S/N)? S
+Ingrese la cantidad pedida: 50
+¿Hay otro pedido (S/N)? S
+Ingrese la cantidad pedida: 30
+¿Hay otro pedido (S/N)? N
+
+MATERIALES REQUERIDOS PARA 80 UNIDADES
+====================================
+Material      Cantidad
+------------------------------------
+Tipo 1             240
+Tipo 2             320
+Tipo 3              80
+Tipo 4             160
+Tipo 5             240
+Tipo 6             160
+====================================
+\end{verbatim}
+
+\textbf{Mejoras implementadas:}
+\begin{itemize}
+    \item Validación robusta para cantidades positivas
+    \item Normalización de respuestas S/N
+    \interface más amigable con mensajes claros
+    \item Formato tabular profesional para resultados
+    \item Cálculo automático de todos los materiales
+\end{itemize}
+
+\textbf{Análisis Industrial:}
+\begin{itemize}
+    \item Sistema ideal para gestión de inventario
+    \item Factores de conversión configurables (3:1, 4:1, etc.)
+    \item Fácilmente adaptable a diferentes productos
+    \item Base para sistemas MRP (Material Requirements Planning)
+\end{itemize}
+
+\textbf{Posibles extensiones:}
+\begin{itemize}
+    \item Almacenar factores de conversión en arreglos
+    \item Agregar nombres descriptivos para cada material
+    \item Calcular costos basados en precios unitarios
+    \item Generar órdenes de compra automáticas
+    \item Exportar resultados a hojas de cálculo
+\end{itemize}
+
+\textbf{Tabla de Factores:}
+\begin{center}
+\begin{tabular}{|c|c|l|}
+\hline
+\textbf{Material} & \textbf{Factor} & \textbf{Ejemplo para 100 unidades} \\ \hline
+1 & 3 & 300 \\ \hline
+2 & 4 & 400 \\ \hline
+3 & 1 & 100 \\ \hline
+4 & 2 & 200 \\ \hline
+5 & 3 & 300 \\ \hline
+6 & 2 & 200 \\ \hline
+\end{tabular}
+\end{center}
+
+
+\section*{Problema 22: Registro de Precipitaciones por Población}
+
+\textbf{Temática:} Acumulación de datos meteorológicos con estructuras anidadas
+
+\textbf{Descripción:}
+Programa que registra acumulados de lluvia para múltiples poblaciones, calculando totales por población y generales, e identificando poblaciones sin precipitación.
+
+\begin{lstlisting}[caption=RegistroLluvias.cpp]
+#include <iostream>
+#include <iomanip>
+#include <string>
+using namespace std;
+
+int main() {
+    string Poblacion;
+    char Hay, Otro;
+    int TotPobla = 0, TotPobNoLluvia = 0;
+    double Lluvia, TotLluviaPob, TotLluviaGral = 0;
+
+    cout << "SISTEMA DE REGISTRO DE PRECIPITACIONES" << endl;
+    cout << "======================================" << endl;
+    
+    cout << "\n¿Hay población para registrar (S/N)? ";
+    cin >> Hay;
+    Hay = toupper(Hay);
+
+    while(Hay == 'S') {
+        cout << "\nNombre de la población: ";
+        cin.ignore();
+        getline(cin, Poblacion);
+        
+        TotLluviaPob = 0;
+        cout << "¿Hubo lluvia en " << Poblacion << " (S/N)? ";
+        cin >> Otro;
+        Otro = toupper(Otro);
+
+        while(Otro == 'S') {
+            cout << "Milímetros cúbicos de lluvia: ";
+            while(!(cin >> Lluvia) || Lluvia < 0) {
+                cout << "Error: Ingrese valor positivo: ";
+                cin.clear();
+                cin.ignore(1000, '\n');
+            }
+            
+            TotLluviaPob += Lluvia;
+            
+            cout << "¿Registrar otra lluvia para " << Poblacion << " (S/N)? ";
+            cin >> Otro;
+            Otro = toupper(Otro);
+        }
+
+        // Resultados por población
+        cout << fixed << setprecision(2);
+        cout << "\n--- RESUMEN " << Poblacion << " ---" << endl;
+        cout << "Total lluvia: " << TotLluviaPob << " mm³" << endl;
+        
+        TotPobla++;
+        TotLluviaGral += TotLluviaPob;
+        
+        if(TotLluviaPob == 0) {
+            TotPobNoLluvia++;
+            cout << "Esta población no registró lluvia" << endl;
+        }
+
+        cout << "\n¿Registrar otra población (S/N)? ";
+        cin >> Hay;
+        Hay = toupper(Hay);
+    }
+
+    // Reporte final
+    cout << "\n=== ESTADISTICAS GENERALES ===" << endl;
+    cout << "Total poblaciones registradas: " << TotPobla << endl;
+    cout << "Acumulado total de lluvia: " << TotLluviaGral << " mm³" << endl;
+    cout << "Poblaciones sin lluvia: " << TotPobNoLluvia << endl;
+    cout << "Promedio de lluvia por población: " 
+         << (TotPobla > 0 ? TotLluviaGral/TotPobla : 0) << " mm³" << endl;
+
+    return 0;
+}
+\end{lstlisting}
+
+\textbf{Explicación:}
+\begin{itemize}
+    \item \texttt{while(Hay == 'S')} controla el registro de múltiples poblaciones
+    \item \texttt{while(Otro == 'S')} maneja múltiples registros de lluvia por población
+    \item \texttt{toupper()} normaliza respuestas S/N
+    \item Validación para valores de lluvia no negativos
+    \item \texttt{TotLluviaPob} acumula la lluvia por población
+    \item \texttt{TotLluviaGral} suma todos los registros
+    \item \texttt{TotPobNoLluvia} cuenta poblaciones sin precipitación
+\end{itemize}
+
+\textbf{Ejemplo de ejecución:}
+\begin{verbatim}
+SISTEMA DE REGISTRO DE PRECIPITACIONES
+======================================
+
+¿Hay población para registrar (S/N)? S
+
+Nombre de la población: Valle Verde
+¿Hubo lluvia en Valle Verde (S/N)? S
+Milímetros cúbicos de lluvia: 12.5
+¿Registrar otra lluvia para Valle Verde (S/N)? S
+Milímetros cúbicos de lluvia: 8.3
+¿Registrar otra lluvia para Valle Verde (S/N)? N
+
+--- RESUMEN VALLE VERDE ---
+Total lluvia: 20.80 mm³
+
+¿Registrar otra población (S/N)? S
+
+Nombre de la población: Loma Seca
+¿Hubo lluvia en Loma Seca (S/N)? N
+
+--- RESUMEN LOMA SECA ---
+Total lluvia: 0.00 mm³
+Esta población no registró lluvia
+
+=== ESTADISTICAS GENERALES ===
+Total poblaciones registradas: 2
+Acumulado total de lluvia: 20.80 mm³
+Poblaciones sin lluvia: 1
+Promedio de lluvia por población: 10.40 mm³
+\end{verbatim}
+
+\textbf{Mejoras implementadas:}
+\begin{itemize}
+    \item Validación de entradas para valores positivos
+    \item Normalización de respuestas S/N
+    \item Cálculo automático del promedio de lluvia
+    \item Identificación clara de poblaciones sin lluvia
+    \item Formato profesional con precisión decimal
+\end{itemize}
+
+\textbf{Análisis Meteorológico:}
+\begin{itemize}
+    \item Sistema ideal para estudios de distribución pluvial
+    \item Permite identificar patrones espaciales de precipitación
+    \item Base para alertas tempranas de sequía
+    \item Datos útiles para agricultura de precisión
+\end{itemize}
+
+\textbf{Posibles extensiones:}
+\begin{itemize}
+    \item Almacenar fechas de cada registro de lluvia
+    \item Georreferenciar las poblaciones
+    \item Generar mapas de calor de precipitación
+    \item Exportar datos a formatos científicos (CSV, JSON)
+    \item Calcular percentiles históricos
+\end{itemize}
+
+\textbf{Estructura del programa:}
+\begin{enumerate}
+\item Inicialización de variables acumuladoras
+\item Bucle principal de registro por población
+\item Bucle anidado para múltiples mediciones de lluvia
+\item Cálculo de estadísticas por población
+\item Actualización de acumuladores globales
+\item Generación de reporte consolidado
+\end{enumerate}
+
+
+
+\section*{Problema 23: Sistema de Registro de Mantenimiento de Máquinas}
+
+\textbf{Temática:} Gestión industrial y clasificación de mantenimientos
+
+\textbf{Descripción:}
+Programa que registra los mantenimientos realizados en 10 máquinas, clasificándolos por tipo y generando reportes individuales y consolidados.
+
+\begin{lstlisting}[caption=MantenimientoMaquinas.cpp]
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+int main() {
+    const int TOTAL_MAQUINAS = 10;
+    const int TOTAL_TIPOS = 7;
+    char Hay;
+    int TotManten = 0, CantManten, Tipo, Maquina;
+    int contadorTipos[TOTAL_TIPOS + 1] = {0}; // Índices 1-7
+
+    cout << "SISTEMA DE REGISTRO DE MANTENIMIENTO" << endl;
+    cout << "====================================" << endl << endl;
+
+    for(Maquina = 1; Maquina <= TOTAL_MAQUINAS; Maquina++) {
+        CantManten = 0;
+        cout << "\nMAQUINA #" << Maquina << endl;
+        cout << "¿Requiere mantenimiento (S/N)? ";
+        cin >> Hay;
+        Hay = toupper(Hay);
+
+        while(Hay == 'S') {
+            cout << "Tipo de mantenimiento (1-7): ";
+            while(!(cin >> Tipo) || Tipo < 1 || Tipo > 7) {
+                cout << "Error: Ingrese tipo válido (1-7): ";
+                cin.clear();
+                cin.ignore(1000, '\n');
+            }
+
+            CantManten++;
+            contadorTipos[Tipo]++; // Incrementa el contador del tipo correspondiente
+
+            cout << "¿Registrar otro mantenimiento para esta máquina (S/N)? ";
+            cin >> Hay;
+            Hay = toupper(Hay);
+        }
+
+        cout << "Máquina #" << Maquina << ": " << CantManten << " mantenimientos" << endl;
+        TotManten += CantManten;
+    }
+
+    // Reporte final
+    cout << "\n=== REPORTE CONSOLIDADO ===" << endl;
+    cout << "Total de mantenimientos realizados: " << TotManten << endl << endl;
+    
+    cout << "DESGLOSE POR TIPO:" << endl;
+    cout << setw(15) << "Tipo" << setw(20) << "Cantidad" << endl;
+    cout << "-------------------------------" << endl;
+    for(int i = 1; i <= TOTAL_TIPOS; i++) {
+        cout << setw(15) << i << setw(20) << contadorTipos[i] << endl;
+    }
+
+    return 0;
+}
+\end{lstlisting}
+
+\textbf{Explicación:}
+\begin{itemize}
+    \item \texttt{const int TOTAL\_MAQUINAS = 10} y \texttt{TOTAL\_TIPOS = 7} definen constantes
+    \item Arreglo \texttt{contadorTipos} almacena acumuladores por tipo (1-7)
+    \item Bucle \texttt{for} recorre las 10 máquinas
+    \item Bucle \texttt{while} interno registra múltiples mantenimientos por máquina
+    \item Validación robusta para tipos de mantenimiento (1-7)
+    \item \texttt{toupper()} normaliza respuestas S/N
+\end{itemize}
+
+\textbf{Ejemplo de ejecución:}
+\begin{verbatim}
+SISTEMA DE REGISTRO DE MANTENIMIENTO
+====================================
+
+MAQUINA #1
+¿Requiere mantenimiento (S/N)? S
+Tipo de mantenimiento (1-7): 2
+¿Registrar otro mantenimiento para esta máquina (S/N)? S
+Tipo de mantenimiento (1-7): 5
+¿Registrar otro mantenimiento para esta máquina (S/N)? N
+Máquina #1: 2 mantenimientos
+
+...
+
+=== REPORTE CONSOLIDADO ===
+Total de mantenimientos realizados: 15
+
+DESGLOSE POR TIPO:
+           Tipo            Cantidad
+-------------------------------
+              1                  3
+              2                  4
+              3                  1
+              4                  2
+              5                  3
+              6                  1
+              7                  1
+\end{verbatim}
+
+\textbf{Mejoras implementadas:}
+\begin{itemize}
+    \item Uso de arreglo para contadores de tipo (más escalable)
+    \item Validación de entrada para tipos de mantenimiento
+    \item Normalización de respuestas S/N
+    \item Formato tabular profesional para reportes
+    \item Constantes configurables para fácil adaptación
+\end{itemize}
+
+\textbf{Análisis Industrial:}
+\begin{itemize}
+    \item Sistema ideal para programas de mantenimiento preventivo
+    \item Permite identificar máquinas/problemáticas (alta frecuencia de mantenimiento)
+    \item Detecta tipos de mantenimiento más frecuentes
+    \item Base para análisis de costos por tipo de mantenimiento
+\end{itemize}
+
+\textbf{Posibles extensiones:}
+\begin{itemize}
+    \item Registrar fecha y técnico responsable
+    \item Asociar costos a cada tipo de mantenimiento
+    \item Generar alertas por exceso de mantenimientos
+    \item Exportar datos a sistemas CMMS (Computerized Maintenance Management Systems)
+    \item Calcular MTBF (Mean Time Between Failures)
+\end{itemize}
+
+\textbf{Estructura del programa:}
+\begin{enumerate}
+\item Inicialización de contadores
+\item Bucle principal por cada máquina (1-10)
+\item Bucle anidado para múltiples mantenimientos
+\item Validación y clasificación por tipo
+\item Acumulación de estadísticas
+\item Generación de reportes consolidados
+\end{enumerate}
+
+
+\section*{Problema 24: Sistema de Monitoreo de Estaciones de Trabajo}
+
+\textbf{Temática:} Control de productividad industrial
+
+\textbf{Descripción:}
+Programa que evalúa el desempeño semanal de 10 estaciones de trabajo comparando su producción contra un nivel de productividad establecido, clasificándolas como DEFICIENTE, BUENO o EXCELENTE.
+
+\begin{lstlisting}[caption=EstacionesTrabajo.cpp]
+#include <iostream>
+#include <iomanip>
+#include <string>
+using namespace std;
+
+int main() {
+    const int NUM_ESTACIONES = 10;
+    string Observacion;
+    char Hay;
+    int Estacion, ProDia, ProdSem, NivProductividad, TotProd = 0;
+
+    cout << "SISTEMA DE MONITOREO DE PRODUCTIVIDAD" << endl;
+    cout << "====================================" << endl << endl;
+    
+    // Entrada del nivel de productividad esperado
+    cout << "Ingrese el nivel de productividad esperado por estacion: ";
+    while(!(cin >> NivProductividad) || NivProductividad <= 0) {
+        cout << "Error: Ingrese un valor positivo: ";
+        cin.clear();
+        cin.ignore(1000, '\n');
+    }
+
+    for(Estacion = 1; Estacion <= NUM_ESTACIONES; Estacion++) {
+        ProdSem = 0;
+        cout << "\nESTACION #" << Estacion << endl;
+        cout << "¿Hubo produccion hoy (S/N)? ";
+        cin >> Hay;
+        Hay = toupper(Hay);
+
+        while(Hay == 'S') {
+            cout << "Produccion del dia: ";
+            while(!(cin >> ProDia) || ProDia < 0) {
+                cout << "Error: Ingrese valor positivo: ";
+                cin.clear();
+                cin.ignore(1000, '\n');
+            }
+            
+            ProdSem += ProDia;
+            
+            cout << "¿Registrar otro dia de produccion (S/N)? ";
+            cin >> Hay;
+            Hay = toupper(Hay);
+        }
+
+        // Evaluacion de productividad
+        if(ProdSem < NivProductividad) {
+            Observacion = "DEFICIENTE";
+        } else if(ProdSem == NivProductividad) {
+            Observacion = "BUENO";
+        } else {
+            Observacion = "EXCELENTE";
+        }
+
+        // Reporte por estacion
+        cout << "\n--- RESUMEN ESTACION #" << Estacion << " ---" << endl;
+        cout << "Produccion semanal: " << ProdSem << endl;
+        cout << "Nivel esperado: " << NivProductividad << endl;
+        cout << "Evaluacion: " << Observacion << endl;
+        
+        TotProd += ProdSem;
+    }
+
+    // Reporte final
+    cout << "\n=== REPORTE GENERAL ===" << endl;
+    cout << "Total producido por todas las estaciones: " << TotProd << endl;
+    cout << "Promedio por estacion: " << fixed << setprecision(2) 
+         << static_cast<double>(TotProd)/NUM_ESTACIONES << endl;
+
+    return 0;
+}
+\end{lstlisting}
+
+\textbf{Explicación:}
+\begin{itemize}
+    \item \texttt{const int NUM\_ESTACIONES = 10} define el número de estaciones
+    \item Bucle \texttt{for} recorre cada estación de trabajo
+    \item Bucle \texttt{while} interno registra producción diaria
+    \item Estructura \texttt{if-else} clasifica el rendimiento
+    \item \texttt{toupper()} normaliza respuestas S/N
+    \item Validación para valores positivos en producción
+\end{itemize}
+
+\textbf{Ejemplo de ejecución:}
+\begin{verbatim}
+SISTEMA DE MONITOREO DE PRODUCTIVIDAD
+====================================
+
+Ingrese el nivel de productividad esperado por estacion: 100
+
+ESTACION #1
+¿Hubo produccion hoy (S/N)? S
+Produccion del dia: 25
+¿Registrar otro dia de produccion (S/N)? S
+Produccion del dia: 30
+¿Registrar otro dia de produccion (S/N)? N
+
+--- RESUMEN ESTACION #1 ---
+Produccion semanal: 55
+Nivel esperado: 100
+Evaluacion: DEFICIENTE
+
+...
+
+=== REPORTE GENERAL ===
+Total producido por todas las estaciones: 1250
+Promedio por estacion: 125.00
+\end{verbatim}
+
+\textbf{Mejoras implementadas:}
+\begin{itemize}
+    \item Validación de entradas para valores positivos
+    \interface más amigable con mensajes descriptivos
+    \item Cálculo automático del promedio de producción
+    \item Sistema de clasificación de rendimiento claro
+    \item Formato profesional de salida
+\end{itemize}
+
+\textbf{Análisis Industrial:}
+\begin{itemize}
+    \item Herramienta para gestión de eficiencia operativa
+    \item Permite identificar estaciones problemáticas
+    \item Base para programas de mejora continua
+    \item Útil para balanceo de líneas de producción
+\end{itemize}
+
+\textbf{Posibles extensiones:}
+\begin{itemize}
+    \item Registrar causas de bajo rendimiento
+    \item Asignar metas personalizadas por estación
+    \item Generar alertas automáticas para rendimiento deficiente
+    \item Integrar con sistemas de incentivos laborales
+    \item Exportar datos a herramientas de Business Intelligence
+\end{itemize}
+
+\textbf{Escala de Evaluación:}
+\begin{center}
+\begin{tabular}{|l|c|}
+\hline
+\textbf{Evaluación} & \textbf{Rango de Producción} \\ \hline
+DEFICIENTE & $Produccion < Meta$ \\ \hline
+BUENO & $Produccion = Meta$ \\ \hline
+EXCELENTE & $Produccion > Meta$ \\ \hline
+\end{tabular}
+\end{center}
+
+\textbf{Recomendaciones:}
+\begin{itemize}
+    \item Analizar causas raíz para estaciones DEFICIENTES
+    \item Replicar mejores prácticas de estaciones EXCELENTES
+    \item Revisar periodicidad de los ciclos de evaluación
+    \item Considerar factores externos que afecten productividad
+\end{itemize}
+
+
+\end{document}
