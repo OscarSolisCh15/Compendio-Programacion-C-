@@ -44,5 +44,5 @@ jobs:
       - name: Upload PDF
         uses: actions/upload-artifact@v4
         with:
-          name: Compendio-PDF
+          name: Manual-PDF
           path: tex/main.pdf
